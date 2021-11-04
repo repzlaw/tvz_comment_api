@@ -13,7 +13,7 @@ class CreateIpAddressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('ip_addresses', function (Blueprint $table) {
+        Schema::connection('mysql')->create('ip_addresses', function (Blueprint $table) {
             $table->id();
             $table->string('ip_address');
             $table->timestamps();

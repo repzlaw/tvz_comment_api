@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConfigurationsTable extends Migration
+class CreateFailedAccessesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateConfigurationsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql')->create('configurations', function (Blueprint $table) {
+        Schema::create('failed_accesses', function (Blueprint $table) {
             $table->id();
-            $table->string('key');
-            $table->string('value')->nullable();
+            $table->string('ip_address');
+            $table->json('header_info')->nullable();
+            $table->string('description')->nullable();
+            $table->string('status_code')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateConfigurationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('configurations');
+        Schema::dropIfExists('failed_accesses');
     }
 }

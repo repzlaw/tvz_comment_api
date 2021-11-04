@@ -6,6 +6,7 @@ use Closure;
 use App\Models\IpAddress;
 use Illuminate\Http\Request;
 use App\Models\Configuration;
+use App\Models\FailedAccess;
 
 class IpMiddleware
 {
@@ -23,7 +24,23 @@ class IpMiddleware
         $api_key = Configuration::where('key','api_key')->firstOrFail();
         
         if ((!in_array($request->ip(), $ips)) || $header !== $api_key->value) {
-                return response()->json(['result'=>'unauthorized access']);
+
+            if((!in_array($request->ip(), $ips))){
+                $error = 'Access denied, IP is not whitelisted';
+                $code = 401;
+            } else {
+                $error = 'Access denied, Invalid API Key';
+                $code = 402;
+            }
+
+            $failedaccess = FailedAccess::create([
+                'ip_address'=>$request->ip(),
+                'header_info' => json_encode($request->header()),
+                'description' => $error,
+                'status_code' => $code,
+            ]);
+
+            return response()->json(['result'=>'unauthorized access']);
         }
         return $next($request);
     }

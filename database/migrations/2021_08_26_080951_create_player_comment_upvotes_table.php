@@ -15,7 +15,7 @@ class CreatePlayerCommentUpvotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('player_comment_upvotes', function (Blueprint $table) {
+        Schema::connection('mongodb')->create('player_comment_upvotes', function (Blueprint $table) {
             $db = DB::connection('mysql')->getDatabaseName();
             $table->id();
             $table->foreignId('user_id');

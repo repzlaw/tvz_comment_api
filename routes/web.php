@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\FailedAccessController;
 use App\Http\Controllers\SettingsController;
 
 /*
@@ -27,6 +28,7 @@ Route::prefix('/settings')->name('setting.')->middleware(['auth'])->group(functi
     Route::post('/ip-address/edit', [SettingsController::class, 'editIp'])->name('ip.edit');
     Route::post('/security', [SettingsController::class, 'security'])->name('security');
     Route::post('/api_key/generate', [SettingsController::class, 'generateAPIKey'])->name('api_key.generate');
+    Route::get('/failed-access', [FailedAccessController::class, 'index'])->name('failed.all');
 
 });
 

@@ -15,7 +15,7 @@ class CreateReportedNewsCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reported_news_comments', function (Blueprint $table) {
+        Schema::connection('mongodb')->create('reported_news_comments', function (Blueprint $table) {
             $db = DB::connection('mysql')->getDatabaseName();
             $table->id();
             $table->foreignId('comment_id')->references('id')->on('news_comments')->onDelete('cascade');

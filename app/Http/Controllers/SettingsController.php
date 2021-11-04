@@ -34,7 +34,6 @@ class SettingsController extends Controller
     //save security question
     public function editIp(StoreIpRequest $request)
     {
-
         $setting = IpAddress::findOrFail($request->ip_id);
         $setting->update([
             'ip_address'=>$request->ip_address,

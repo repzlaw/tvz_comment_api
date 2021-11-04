@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Jenssegers\Mongodb\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Configuration extends Model
 {
-    protected $connection = 'mongodb';
+    protected $connection = 'mysql';
 
     protected $fillable = ['key','value'];
     public function getCreatedAtAttribute($value){

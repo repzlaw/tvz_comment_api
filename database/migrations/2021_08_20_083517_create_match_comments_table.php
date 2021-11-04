@@ -15,7 +15,7 @@ class CreateMatchCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('match_comments', function (Blueprint $table) {
+        Schema::connection('mongodb')->create('match_comments', function (Blueprint $table) {
             $db = DB::connection('mysql')->getDatabaseName();
             $table->id();
             $table->string('uuid')->unique();

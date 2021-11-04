@@ -38,7 +38,7 @@
     </div>
 </div>
 
-<!-- create team modal -->
+<!-- create ip address modal -->
 <div class="modal fade" tabindex="-1" role="dialog" id= "create-modal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -70,7 +70,7 @@
 </div>
   <!-- /.modal -->
 
-<!-- edit team modal -->
+<!-- edit ip address modal -->
 <div class="modal fade" tabindex="-1" role="dialog" id= "edit-modal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -87,7 +87,7 @@
                 </div>
                 <input  type="text" name="ip_address" id="ip_address" class="form-control" placeholder="ip address">
               </div>
-              <input  type="hidden" name="ip_id" id="ip_id">
+              <input type="hidden" name="ip_id" id="ip_id">
               
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -115,7 +115,7 @@ $('#create-button').on('click',function(event){
 //modal to edit category
 function edit(category){
     $('#ip_address').val(category.ip_address);
-    $('#ip_id').val(category._id);
+    $('#ip_id').val(category.id);
     $('#edit-modal').modal();
 }
 

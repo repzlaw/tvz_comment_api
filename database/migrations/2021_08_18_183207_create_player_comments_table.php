@@ -15,7 +15,7 @@ class CreatePlayerCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('player_comments', function (Blueprint $table) {
+        Schema::connection('mongodb')->create('player_comments', function (Blueprint $table) {
             $db = DB::connection('mysql')->getDatabaseName();
             $table->id();
             $table->string('uuid')->unique();
