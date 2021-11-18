@@ -23,7 +23,7 @@
                       <li class="list-group-item">
                         <div>
                           <p>View failed access log</p>
-                          <a class="btn btn-outline-primary" href="/settings/failed-access">View failed access</a>
+                          <a class="btn btn-outline-warning" href="/settings/failed-access">View failed access</a>
                         </div>
                       </li>
 

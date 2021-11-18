@@ -19,7 +19,7 @@ class IpMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $header = $request->header('api_key');
+        $header = $request->header('X-Api-Key');
         $ips = IpAddress::pluck('ip_address')->toArray();
         $api_key = Configuration::where('key','api_key')->firstOrFail();
         
@@ -28,7 +28,7 @@ class IpMiddleware
             if((!in_array($request->ip(), $ips))){
                 $error = 'Access denied, IP is not whitelisted';
                 $code = 401;
-            } else {
+            } else if($header !== $api_key->value){
                 $error = 'Access denied, Invalid API Key';
                 $code = 402;
             }
@@ -40,8 +40,9 @@ class IpMiddleware
                 'status_code' => $code,
             ]);
 
-            return response()->json(['result'=>'unauthorized access']);
+            return response()->json(['result'=>'unauthorized access'],400);
         }
+
         return $next($request);
     }
 }

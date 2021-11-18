@@ -18,7 +18,6 @@ class ReportCommentController extends Controller
     public function reportNewsComment(ReportCommentRequest $request)
     {
         // return($request->all());
-
         $post = new ReportedNewsComment;
 
         $post->policy_id = $request->policy_id;
@@ -37,14 +36,12 @@ class ReportCommentController extends Controller
         }
 
         return response()->json(["result" => "failed"], 400);
-
     }
 
     //report team comment
     public function reportTeamComment(ReportCommentRequest $request)
     {
         // return($request->all());
-
         $post = new ReportedTeamComment;
 
         $post->policy_id = $request->policy_id;
@@ -52,7 +49,6 @@ class ReportCommentController extends Controller
         $post->comment_id = $request->comment_id;
         $post->user_id = $request->user_id;
         $post->save();
-        // return($request->all());
 
         if($post){
             $posts = TeamComment::findOrFail($request->comment_id);
@@ -64,13 +60,11 @@ class ReportCommentController extends Controller
         }
 
         return response()->json(["result" => "failed"], 400);
-
     }
 
     //report player comment
     public function reportPlayerComment(ReportCommentRequest $request)
     {
-
         $post = new ReportedPlayerComment;
 
         $post->policy_id = $request->policy_id;
@@ -89,6 +83,5 @@ class ReportCommentController extends Controller
         }
 
         return response()->json(["result" => "failed"], 400);
-
     }
 }

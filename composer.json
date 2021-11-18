@@ -12,6 +12,7 @@
         "jenssegers/mongodb": "^3.8",
         "laravel/fortify": "^1.8",
         "laravel/framework": "^8.40",
+        "laravel/telescope": "^4.6",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3"
     },
