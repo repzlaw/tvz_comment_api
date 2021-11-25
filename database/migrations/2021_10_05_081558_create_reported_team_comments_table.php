@@ -15,12 +15,12 @@ class CreateReportedTeamCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mongodb')->create('reported_team_comments', function (Blueprint $table) {
-            $db = DB::connection('mysql')->getDatabaseName();
+        Schema::create('reported_team_comments', function (Blueprint $table) {
+            $db = DB::connection('mongodb')->getDatabaseName();
             $table->id();
-            $table->foreignId('comment_id')->references('id')->on('team_comments')->onDelete('cascade');
-            $table->foreignId('policy_id');
-            $table->foreignId('user_id');
+            $table->string('comment_id');
+            $table->string('policy_id');
+            $table->string('user_id');
             $table->string('user_notes');
             $table->timestamps();
         });

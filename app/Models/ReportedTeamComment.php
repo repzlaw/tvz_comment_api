@@ -3,18 +3,20 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Jenssegers\Mongodb\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\HybridRelations;
 
 class ReportedTeamComment extends Model
 {
-    protected $connection = 'mongodb';
+    use HybridRelations;
+    protected $connection = 'mysql';
 
      /**
      * Get comment details.
      */
     public function comment()
     {
-        return $this->belongsTo(TeamComment::class);
+        return $this->setConnection('mongodb')->belongsTo(TeamComment::class);
     }
 
     public function getCreatedAtAttribute($value){

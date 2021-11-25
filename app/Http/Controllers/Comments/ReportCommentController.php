@@ -17,7 +17,7 @@ class ReportCommentController extends Controller
     //report news comment
     public function reportNewsComment(ReportCommentRequest $request)
     {
-        // return($request->all());
+        // return($request->all());      
         $post = new ReportedNewsComment;
 
         $post->policy_id = $request->policy_id;
